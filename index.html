@@ -181,23 +181,183 @@
             </div>
         </div>
     </footer>
+
     <script>
-    // Manual Download - Versión real
-    document.getElementById('download-manual').addEventListener('click', function() {
-        if(confirm('¿Estás seguro de que deseas descargar el Manual de Usuario en PDF?')) {
-            // Ruta real al archivo PDF
-            const pdfUrl = 'Desarga/SetupNom.exe';
+    // Esperar a que el DOM esté completamente cargado
+    document.addEventListener('DOMContentLoaded', function() {
+        // Detección del navegador
+        function getBrowserInfo() {
+            const userAgent = navigator.userAgent;
+            let browserName = "Navegador";
             
-            // Crear enlace temporal para descarga
-            const link = document.createElement('a');
-            link.href = pdfUrl;
-            link.download = 'SetupNom.exe';
-            link.target = '_blank'; // Abrir en nueva pestaña
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            if (userAgent.includes("Chrome")) browserName = "Chrome";
+            else if (userAgent.includes("Firefox")) browserName = "Firefox";
+            else if (userAgent.includes("Safari")) browserName = "Safari";
+            else if (userAgent.includes("Edge")) browserName = "Edge";
+            
+            return browserName;
+        }
+
+        // Configuración para GitHub Pages
+        const installerConfig = {
+            // Ruta relativa para GitHub Pages
+            url: 'Descarga/SetupNom.exe',
+            fileName: 'SetupNom.exe',
+            folder: 'Descarga',
+            version: 'v1.0.0',
+            size: '50 MB'
+        };
+
+        // Función principal de descarga - CORREGIDO EL ID
+        const downloadBtn = document.getElementById('download-instalador');
+        
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const browser = getBrowserInfo();
+                showDownloadDialog(installerConfig, browser);
+            });
+        } else {
+            console.error('Botón de descarga no encontrado');
+        }
+
+        function showDownloadDialog(installerInfo, browser) {
+            const messages = {
+                Chrome: `En la barra de descargas, haga clic en "Guardar" y seleccione la carpeta "${installerInfo.folder}"`,
+                Firefox: `En el diálogo de descarga, elija "Guardar archivo" y seleccione la carpeta "${installerInfo.folder}"`,
+                Safari: `La descarga comenzará automáticamente. Por favor, mueva el archivo a la carpeta "${installerInfo.folder}"`,
+                Edge: `Haga clic en "Guardar" y seleccione la carpeta "${installerInfo.folder}"`,
+                Navegador: `Guarde el archivo en la carpeta "${installerInfo.folder}"`
+            };
+
+            const instruction = messages[browser] || messages.Navegador;
+
+            const confirmationMessage = `
+INICIAR DESCARGA DEL INSTALADOR
+
+ Nombre: ${installerInfo.fileName}
+ Versión: ${installerInfo.version}
+Tamaño: ${installerInfo.size}
+Carpeta destino: ${installerInfo.folder}
+
+ INSTRUCCIONES:
+Descargar el archivo y asegurarse de ejecutarlo como administrador,darle permiso para que se ejecute
+
+ Después de descargar:
+• Guarde en la carpeta "${installerInfo.folder}"
+• Ejecute como Administrador
+• Siga los pasos del instalador
+
+¿Desea continuar con la descarga?
+            `;
+
+            if(confirm(confirmationMessage)) {
+                executeDownload(installerInfo);
+            }
+        }
+
+        function executeDownload(installerInfo) {
+            try {
+                // Verificar si el archivo existe (solo para mostrar mensaje de error personalizado)
+                checkFileExists(installerInfo.url).then(exists => {
+                    if (exists) {
+                        // Crear elemento de descarga
+                        const downloadLink = document.createElement('a');
+                        downloadLink.href = installerInfo.url;
+                        downloadLink.download = installerInfo.fileName;
+                        
+                        // Estilos para ocultar el elemento
+                        downloadLink.style.display = 'none';
+                        downloadLink.style.position = 'absolute';
+                        downloadLink.style.left = '-9999px';
+                        
+                        // Agregar al DOM y simular clic
+                        document.body.appendChild(downloadLink);
+                        downloadLink.click();
+                        document.body.removeChild(downloadLink);
+                        
+                        // Mensaje de éxito
+                        showSuccessMessage(installerInfo);
+                    } else {
+                        showFileNotFoundError(installerInfo);
+                    }
+                }).catch(() => {
+                    // Si falla la verificación, intentar descarga de todos modos
+                    forceDownload(installerInfo);
+                });
+                
+            } catch (error) {
+                console.error('Error en descarga:', error);
+                showErrorMessage();
+            }
+        }
+
+        function forceDownload(installerInfo) {
+            // Método alternativo si falla la verificación
+            const downloadLink = document.createElement('a');
+            downloadLink.href = installerInfo.url;
+            downloadLink.download = installerInfo.fileName;
+            downloadLink.target = '_blank';
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+            
+            showSuccessMessage(installerInfo);
+        }
+
+        function checkFileExists(url) {
+            return fetch(url, { method: 'HEAD' })
+                .then(response => response.ok)
+                .catch(() => false);
+        }
+
+        function showSuccessMessage(installerInfo) {
+            const successMessage = `
+DESCARGA INICIADA CORRECTAMENTE
+
+ Por favor asegúrese de:
+1. Descargar el instalador
+2.Tener java (8 p superior) 
+3. Ejecute como Administrador
+
+ Si la descarga no inicia automáticamente:
+• Verifique su conexión a internet
+• Haga clic derecho en el enlace y "Guardar enlace como..."
+• Contacte al administrador si persiste el problema
+            `;
+            
+            setTimeout(() => {
+                alert(successMessage);
+            }, 500);
+        }
+
+        function showFileNotFoundError(installerInfo) {
+            const errorMessage = `
+ARCHIVO NO ENCONTRADO
+
+El instalador no está disponible en este momento.
+
+Detalles:
+• Archivo: ${installerInfo.url}
+• Ruta: ${installerInfo.folder}
+
+ Por favor contacte al administrador del sistema para obtener el instalador.
+            `;
+            
+            alert(errorMessage);
+        }
+
+        function showErrorMessage() {
+            alert(' Error al iniciar la descarga.\n\nPor favor:\n1. Verifique su conexión a internet\n2. Intente nuevamente\n3. Contacte al administrador si persiste el problema');
+        }
+
+        // Actualizar la información de versión en el botón
+        const versionInfo = document.querySelector('#download-instalador');
+        if (versionInfo) {
+            versionInfo.textContent = `Descargar Ahora (${installerConfig.version} - ${installerConfig.size})`;
         }
     });
-</script>
-   </body>
+    </script>
+</body>
 </html>
