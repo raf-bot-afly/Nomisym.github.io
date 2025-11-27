@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Usuario - NomiSys</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">Nomi<span>Sys</span></a>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="index.html#features">Características</a></li>
+                        <li><a href="index.html#download">Descargar</a></li>
+                        <li><a href="manual-usuario.html" class="active">Manual</a></li>
+                        <li><a href="guia-instalacion.html">Guía</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="actualizaciones.html">Actualizaciones</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Manual Section -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Manual de Usuario</h1>
+            <p>Guía completa para utilizar todas las funcionalidades de NomiSys</p>
+        </div>
+    </section>
+
+    <section class="manual-content">
+        <div class="container">
+            <div class="manual-intro">
+                <div class="manual-card">
+                    <h2>Manual Completo de NomiSys</h2>
+                    <p>Este manual contiene instrucciones detalladas para utilizar todas las funcionalidades del sistema de nómina NomiSys. Desde la configuración inicial hasta las operaciones avanzadas, encontrarás información útil para aprovechar al máximo nuestro software.</p>
+                    
+                    <div class="manual-details">
+                        <div class="detail-item">
+                            <h3>📋 Contenido del Manual</h3>
+                            <ul>
+                                <li>Introduccion al sistema</li>
+                                <li>Instalacion de software requerida</li>
+                                <li>Ventana Login</li>
+                                <li>Menu Principal</li>
+                                <li> Menú: Empleados</li>
+                                <li> Nuevo Empleado</li>
+                                <li> Nomina</li>
+                                <li>Recibo</li>
+                                <li> Reporte</li>
+                                <li> Resumen</li>
+                                <li> Ayuda y soporte tecnico</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <h3>📄 Especificaciones</h3>
+                            <ul>
+                                <li><strong>Formato:</strong> PDF</li>
+                                <li><strong>Páginas:</strong> 15</li>
+                                <li><strong>Actualizado:</strong>  Noviembre 2025</li>
+                                <li><strong>Versión:</strong> Para NomiSys v1.0.0</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="download-section">
+                        <button id="download-manual" class="btn btn-large">Descargar Manual en PDF</button>
+                        <p class="download-note">Al hacer clic, se descargará el manual completo en formato PDF</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="manual-chapters">
+                <h2>Capítulos Destacados</h2>
+                <div class="chapters-grid">
+                    <div class="chapter-card">
+                        <h3>1. Introducción a NomiSys</h3>
+                        <p>Conoce la interfaz y los conceptos básicos del sistema.</p>
+                    </div>
+                    <div class="chapter-card">
+                        <h3>2. Configuración Inicial</h3>
+                        <p>Establece los parámetros básicos de tu empresa.</p>
+                    </div>
+                    <div class="chapter-card">
+                        <h3>3. Gestión de Empleados</h3>
+                        <p>Agrega, modifica y administra la información de tus colaboradores.</p>
+                    </div>
+                    <div class="chapter-card">
+                        <h3>4. Proceso de Nómina</h3>
+                        <p>Guía paso a paso para calcular y procesar nóminas.</p>
+                    </div>
+                    <div class="chapter-card">
+                        <h3>5. Reportes Globales</h3>
+                        <p>Genera y exporta reportes globales.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>NomiSys</h3>
+                    <p>Soluciones integrales de nómina para empresas de todos los tamaños.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="index.html#download">Descargas</a></li>
+                        <li><a href="manual-usuario.html">Manual</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Recursos</h3>
+                    <ul>
+                        <li><a href="manual-usuario.html">Manual de Usuario</a></li>
+                        <li><a href="guia-instalacion.html">Guía de Instalación</a></li>
+                        <li><a href="faq.html">Preguntas Frecuentes</a></li>
+                        <li><a href="actualizaciones.html">Actualizaciones</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li>Email: soporte@nomisys.com</li>
+                        <li>Teléfono: (871) 123-4567</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 NomiSys. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // Manual Download - Versión real
+    document.getElementById('download-manual').addEventListener('click', function() {
+        if(confirm('¿Estás seguro de que deseas descargar el Manual de Usuario en PDF?')) {
+            // Ruta real al archivo PDF
+            const pdfUrl = 'archivos/MANUAL DE USUARIO.pdf';
+            
+            // Crear enlace temporal para descarga
+            const link = document.createElement('a');
+            link.href = pdfUrl;
+            link.download = 'Manual_Usuario_NomiSys.pdf';
+            link.target = '_blank'; // Abrir en nueva pestaña
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    });
+</script>
+</body>
+</html>

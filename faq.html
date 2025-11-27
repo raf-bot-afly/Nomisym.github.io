@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntas Frecuentes - NomiSys</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">Nomi<span>Sys</span></a>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="index.html#features">Características</a></li>
+                        <li><a href="index.html#download">Descargar</a></li>
+                        <li><a href="manual-usuario.html">Manual</a></li>
+                        <li><a href="guia-instalacion.html">Guía</a></li>
+                        <li><a href="faq.html" class="active">FAQ</a></li>
+                        <li><a href="actualizaciones.html">Actualizaciones</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- FAQ Section -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Preguntas Frecuentes</h1>
+            <p>Encuentra respuestas a las consultas más comunes sobre NomiSys</p>
+        </div>
+    </section>
+
+    <section class="faq-content">
+        <div class="container">
+            <div class="faq-container">
+                
+                <div class="faq-item">
+                    <div class="faq-question">¿Puedo migrar datos desde mi sistema actual?</div>
+                    <div class="faq-answer">
+                        <p>Si con limitaciones. NomiSys incluye herramientas de migración para transferir datos desde los sistemas de nómina más comunes. Además, nuestro equipo de implementación puede asistirte en el proceso para garantizar una transición sin problemas.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">¿Qué tipo de soporte técnico ofrecen?</div>
+                    <div class="faq-answer">
+                        <p>Ofrecemos múltiples niveles de soporte. Desde soporte por email hasta soporte telefónico.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">¿Es posible personalizar NomiSys para políticas específicas de mi empresa?</div>
+                    <div class="faq-answer">
+                        <p>No, NomiSys actualmente cuenta con funciones limitadas. En futuras actualizaciones puedes definir políticas de compensación, estructuras de pago, deducciones personalizadas y más. Podemos desarrollar funcionalidades específicas según tus necesidades.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">¿NomiSys funciona en Mac o Linux?</div>
+                    <div class="faq-answer">
+                        <p>Actualmente, NomiSys está optimizado para sistemas Windows. Sin embargo, estamos desarrollando versiones para otras plataformas. Mientras tanto, puedes utilizar NomiSys en Mac o Linux mediante máquinas virtuales o emuladores de Windows.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ask-question">
+                <h2>¿No encontraste tu pregunta?</h2>
+                <p>Envíanos tu consulta y nuestro equipo te responderá en menos de 24 horas.</p>
+                <form id="question-form">
+                    <div class="form-group">
+                        <label for="name">Nombre completo</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="question">Tu pregunta</label>
+                        <textarea id="question" class="form-control" required placeholder="Describe tu pregunta o problema en detalle..."></textarea>
+                    </div>
+                    <button type="submit" class="btn">Enviar Pregunta</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>NomiSys</h3>
+                    <p>Soluciones integrales de nómina para empresas de todos los tamaños.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="index.html#download">Descargas</a></li>
+                        <li><a href="manual-usuario.html">Manual</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Recursos</h3>
+                    <ul>
+                        <li><a href="manual-usuario.html">Manual de Usuario</a></li>
+                        <li><a href="guia-instalacion.html">Guía de Instalación</a></li>
+                        <li><a href="faq.html">Preguntas Frecuentes</a></li>
+                        <li><a href="actualizaciones.html">Actualizaciones</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li>Email: soporte@nomisys.com</li>
+                        <li>Teléfono: (871) 123-4567</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 NomiSys. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentNode;
+                item.classList.toggle('active');
+            });
+        });
+
+        // Question Form Submission
+        document.getElementById('question-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Gracias por tu pregunta! Te responderemos en menos de 24 horas.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
